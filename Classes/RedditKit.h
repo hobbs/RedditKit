@@ -47,3 +47,4 @@
 #import "RKModeratorAction.h"
 #import "RKSubreddit.h"
 #import "RKUser.h"
+#import "NSString+HTML.h"
