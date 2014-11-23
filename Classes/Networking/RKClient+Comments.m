@@ -93,7 +93,7 @@ NSString * RKStringFromCommentSort(RKCommentSort sort)
 {
     NSParameterAssert(linkIdentifier);
     
-    NSDictionary *parameters = @{ @"sort": RKStringFromCommentSort(sort) };
+    NSDictionary *parameters = @{ @"sort": RKStringFromCommentSort(sort), @"cb": [NSString stringWithFormat: @"%f", [NSDate timeIntervalSinceReferenceDate]] };
     NSString *path = [NSString stringWithFormat:@"comments/%@.json", linkIdentifier];
     
     return [self listingTaskWithPath:path parameters:parameters pagination:nil completion:completion];
