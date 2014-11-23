@@ -155,6 +155,31 @@ NSString * RKStringFromSubredditCategory(RKSubredditCategory category)
     }];
 }
 
+- (NSURLSessionDataTask *)linkWithIdentifier:(NSString *)linkId completion:(RKObjectCompletionBlock)completion
+{
+    NSParameterAssert(link);
+    
+    NSString *path = [NSString stringWithFormat:@"comments/%@.json", linkId];
+    
+    return [self fullListingWithPath:path parameters:nil pagination:nil completion:^(NSArray *responseObject, NSError *error) {
+        if (responseObject)
+        {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                NSDictionary *linkResponse = [responseObject firstObject];
+                NSArray *links = [self objectsFromListingResponse:linkResponse];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    completion([links firstObject], nil);
+                });
+            });
+        }
+        else
+        {
+            completion(nil, error);
+        }
+    }];
+}
+
 - (NSURLSessionDataTask *)linkByExpandingInformationForLink:(RKLink *)link completion:(RKObjectCompletionBlock)completion
 {
     NSParameterAssert(link);
