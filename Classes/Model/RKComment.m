@@ -38,7 +38,8 @@
         @"scoreHidden": @"data.score_hidden",
         @"replies": @"data.replies",
         @"edited": @"data.edited",
-        @"linkID": @"data.link_id"
+        @"linkID": @"data.link_id",
+        @"authorFlairText": @"data.author_flair_text"
     };
     
     return [[super JSONKeyPathsByPropertyKey] mtl_dictionaryByAddingEntriesFromDictionary:keyPaths];

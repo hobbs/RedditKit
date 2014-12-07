@@ -42,6 +42,12 @@ typedef NS_ENUM(NSUInteger, RKDistinguishedStatus) {
 @property (nonatomic, copy, readonly) NSString *author;
 
 /**
+ The flair text for the author of this comment.
+ */
+@property (nonatomic, copy, readonly) NSString *authorFlairText;
+
+
+/**
  The username of the user who posted the comment's parent link.
  
  @note This property will only be set for comments retrieved outside of their parent submission. Read more here: http://redd.it/1rgf6j
